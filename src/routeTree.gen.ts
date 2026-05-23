@@ -9,38 +9,216 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppViralityRouteImport } from './routes/app.virality'
+import { Route as AppVaultRouteImport } from './routes/app.vault'
+import { Route as AppTrendsRouteImport } from './routes/app.trends'
+import { Route as AppThumbnailRouteImport } from './routes/app.thumbnail'
+import { Route as AppScriptRouteImport } from './routes/app.script'
+import { Route as AppPublishRouteImport } from './routes/app.publish'
+import { Route as AppHooksRouteImport } from './routes/app.hooks'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppViralityRoute = AppViralityRouteImport.update({
+  id: '/virality',
+  path: '/virality',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppVaultRoute = AppVaultRouteImport.update({
+  id: '/vault',
+  path: '/vault',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTrendsRoute = AppTrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppThumbnailRoute = AppThumbnailRouteImport.update({
+  id: '/thumbnail',
+  path: '/thumbnail',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppScriptRoute = AppScriptRouteImport.update({
+  id: '/script',
+  path: '/script',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPublishRoute = AppPublishRouteImport.update({
+  id: '/publish',
+  path: '/publish',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHooksRoute = AppHooksRouteImport.update({
+  id: '/hooks',
+  path: '/hooks',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signup': typeof SignupRoute
+  '/app/hooks': typeof AppHooksRoute
+  '/app/publish': typeof AppPublishRoute
+  '/app/script': typeof AppScriptRoute
+  '/app/thumbnail': typeof AppThumbnailRoute
+  '/app/trends': typeof AppTrendsRoute
+  '/app/vault': typeof AppVaultRoute
+  '/app/virality': typeof AppViralityRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signup': typeof SignupRoute
+  '/app/hooks': typeof AppHooksRoute
+  '/app/publish': typeof AppPublishRoute
+  '/app/script': typeof AppScriptRoute
+  '/app/thumbnail': typeof AppThumbnailRoute
+  '/app/trends': typeof AppTrendsRoute
+  '/app/vault': typeof AppVaultRoute
+  '/app/virality': typeof AppViralityRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signup': typeof SignupRoute
+  '/app/hooks': typeof AppHooksRoute
+  '/app/publish': typeof AppPublishRoute
+  '/app/script': typeof AppScriptRoute
+  '/app/thumbnail': typeof AppThumbnailRoute
+  '/app/trends': typeof AppTrendsRoute
+  '/app/vault': typeof AppVaultRoute
+  '/app/virality': typeof AppViralityRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/onboarding'
+    | '/signup'
+    | '/app/hooks'
+    | '/app/publish'
+    | '/app/script'
+    | '/app/thumbnail'
+    | '/app/trends'
+    | '/app/vault'
+    | '/app/virality'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/onboarding'
+    | '/signup'
+    | '/app/hooks'
+    | '/app/publish'
+    | '/app/script'
+    | '/app/thumbnail'
+    | '/app/trends'
+    | '/app/vault'
+    | '/app/virality'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/onboarding'
+    | '/signup'
+    | '/app/hooks'
+    | '/app/publish'
+    | '/app/script'
+    | '/app/thumbnail'
+    | '/app/trends'
+    | '/app/vault'
+    | '/app/virality'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +226,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/virality': {
+      id: '/app/virality'
+      path: '/virality'
+      fullPath: '/app/virality'
+      preLoaderRoute: typeof AppViralityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/vault': {
+      id: '/app/vault'
+      path: '/vault'
+      fullPath: '/app/vault'
+      preLoaderRoute: typeof AppVaultRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/trends': {
+      id: '/app/trends'
+      path: '/trends'
+      fullPath: '/app/trends'
+      preLoaderRoute: typeof AppTrendsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/thumbnail': {
+      id: '/app/thumbnail'
+      path: '/thumbnail'
+      fullPath: '/app/thumbnail'
+      preLoaderRoute: typeof AppThumbnailRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/script': {
+      id: '/app/script'
+      path: '/script'
+      fullPath: '/app/script'
+      preLoaderRoute: typeof AppScriptRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/publish': {
+      id: '/app/publish'
+      path: '/publish'
+      fullPath: '/app/publish'
+      preLoaderRoute: typeof AppPublishRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/hooks': {
+      id: '/app/hooks'
+      path: '/hooks'
+      fullPath: '/app/hooks'
+      preLoaderRoute: typeof AppHooksRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppHooksRoute: typeof AppHooksRoute
+  AppPublishRoute: typeof AppPublishRoute
+  AppScriptRoute: typeof AppScriptRoute
+  AppThumbnailRoute: typeof AppThumbnailRoute
+  AppTrendsRoute: typeof AppTrendsRoute
+  AppVaultRoute: typeof AppVaultRoute
+  AppViralityRoute: typeof AppViralityRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppHooksRoute: AppHooksRoute,
+  AppPublishRoute: AppPublishRoute,
+  AppScriptRoute: AppScriptRoute,
+  AppThumbnailRoute: AppThumbnailRoute,
+  AppTrendsRoute: AppTrendsRoute,
+  AppVaultRoute: AppVaultRoute,
+  AppViralityRoute: AppViralityRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
