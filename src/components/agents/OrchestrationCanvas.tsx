@@ -23,9 +23,9 @@ export function OrchestrationCanvas({ compact = false }: { compact?: boolean }) 
   const [states, setStates] = useState<Record<string, State>>(() =>
     Object.fromEntries(agents.map((a) => [a.id, "idle"])),
   );
-  const [confidence, setConfidence] = useState<Record<string, number>>(() =>
-    Object.fromEntries(agents.map((a) => [a.id, 60 + Math.floor(Math.random() * 30)])),
-  );
+  const [confidence, setConfidence] = useState<Record<string, number>>(
+  Object.fromEntries(agents.map((a) => [a.id, 75]))
+);
 
   useEffect(() => {
     const t = setInterval(() => {
